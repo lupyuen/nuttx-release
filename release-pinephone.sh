@@ -78,6 +78,14 @@ echo '===== PinePhone Configuration'
 echo ----- Build NuttX
 build_nuttx
 
+echo ----- Copy the config
+cp .config nuttx.config
+
+echo ----- Compress the NuttX Image
+cp nuttx.bin Image
+rm -f Image.gz
+gzip Image
+
 echo '===== PinePhone Size'
 aarch64-none-elf-size nuttx
 
@@ -90,44 +98,42 @@ aarch64-none-elf-objdump \
   &
 
 echo ----- Wait for microSD
+microsd=/media/luppy/43F4-25ED
 set +x  #  Don't echo commands
 echo "***** Insert microSD into computer"
 while : ; do
-  if [ -d "/Volumes/NO NAME" ]
+  if [ -d "$microsd" ]
   then
     break
   fi
   sleep 1
 done
+sleep 1
 set -x  #  Echo commands
 
-echo ----- Copy the config
-cp .config nuttx.config
-
-echo ----- Compress the NuttX Image
-cp nuttx.bin Image
-rm -f Image.gz
-gzip Image
-
 echo ----- Copy to microSD
-cp Image.gz "/Volumes/NO NAME"
-ls -l "/Volumes/NO NAME/Image.gz"
+cp Image.gz "$microsd/"
+ls -l "$microsd/Image.gz"
 
-## TODO: Verify that /dev/disk2 is microSD
 echo ----- Unmount microSD
-diskutil unmountDisk /dev/disk2
+umount "$microsd"
+## For macOS: diskutil unmountDisk /dev/disk2
+## TODO: Verify that /dev/disk2 is microSD
 
 echo ----- Wait for USB Serial to be connected
+## sudo usermod -a -G dialout $USER
+usbserial=/dev/ttyUSB0
 set +x  #  Don't echo commands
 echo "***** Insert microSD into PinePhone, connect PinePhone to USB"
 while : ; do
-  if [ -c "/dev/tty.usbserial-1410" ] || [ -c "/dev/tty.usbserial-1420" ]
+  if [ -c "$usbserial" ]
   then
     break
   fi
   sleep 1
 done
 set -x  #  Echo commands
+
 
 echo ----- Run the firmware
 echo Power on PinePhone, run "uname -a" and "free".
@@ -135,6 +141,6 @@ echo Press Enter to begin...
 read
 
 echo '===== PinePhone NSH Info and Free'
-screen /dev/tty.usbserial-14* 115200
+sudo screen "$usbserial" 115200
 
 echo ----- TODO: Verify hash from uname

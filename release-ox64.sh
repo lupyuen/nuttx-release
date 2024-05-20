@@ -138,10 +138,11 @@ cat nuttx.bin /tmp/nuttx.pad initrd \
   >Image
 
 echo ----- Wait for microSD
+microsd=/media/luppy/43F4-25ED
 set +x  #  Don't echo commands
 echo "***** Insert microSD into computer"
 while : ; do
-  if [ -d "/Volumes/NO NAME" ]
+  if [ -d "$microsd" ]
   then
     break
   fi
@@ -151,12 +152,27 @@ sleep 1
 set -x  #  Echo commands
 
 echo ----- Copy to microSD
-cp Image "/Volumes/NO NAME/"
-ls -l "/Volumes/NO NAME/Image"
+cp Image "$microsd/"
+ls -l "$microsd/Image"
 
-## TODO: Verify that /dev/disk2 is microSD
 echo ----- Unmount microSD
-diskutil unmountDisk /dev/disk2
+umount "$microsd"
+## For macOS: diskutil unmountDisk /dev/disk2
+## TODO: Verify that /dev/disk2 is microSD
+
+echo ----- Wait for USB Serial to be connected
+## sudo usermod -a -G dialout $USER
+usbserial=/dev/ttyUSB0
+set +x  #  Don't echo commands
+echo "***** Connect Ox64 to USB Serial"
+while : ; do
+  if [ -c "$usbserial" ]
+  then
+    break
+  fi
+  sleep 1
+done
+set -x  #  Echo commands
 
 echo ----- Run the firmware
 echo Insert microSD into Ox64, power on Ox64, run "uname -a" and "free".
@@ -164,7 +180,7 @@ echo Press Enter to begin...
 read
 
 echo '===== Ox64 NSH Info and Free'
-screen /dev/tty.usbserial-14* 2000000
+sudo screen "$usbserial" 2000000
 ## open -a CoolTerm
 
 echo ----- TODO: Verify hash from uname

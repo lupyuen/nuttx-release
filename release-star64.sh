@@ -139,10 +139,12 @@ scp initrd tftpserver:/tftpboot
 ssh tftpserver ls -l /tftpboot/Image
 
 echo ----- Wait for USB Serial to be connected
+## sudo usermod -a -G dialout $USER
+usbserial=/dev/ttyUSB0
 set +x  #  Don't echo commands
 echo "***** Connect Star64 to USB Serial"
 while : ; do
-  if [ -c "/dev/tty.usbserial-1410" ] || [ -c "/dev/tty.usbserial-1420" ]
+  if [ -c "$usbserial" ]
   then
     break
   fi
@@ -156,6 +158,6 @@ echo Press Enter to begin...
 read
 
 echo '===== Star64 NSH Info and Free'
-screen /dev/tty.usbserial-14* 115200
+sudo screen "$usbserial" 115200
 
 echo ----- TODO: Verify hash from uname
