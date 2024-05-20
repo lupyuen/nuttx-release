@@ -2,11 +2,11 @@
 ## Validate NuttX Release for Ox64
 ## Based on https://cwiki.apache.org/confluence/display/NUTTX/Validating+a+staged+Release
 ## Sample Output: https://gist.github.com/lupyuen/d211428dc43d85b8ec1fd803275e9f26
-## clear && cd /tmp && script /tmp/release-ox64.log ~/PinePhone/wip-nuttx/release-ox64.sh
+## clear && cd /tmp && script /tmp/release-ox64.log -c ~/nuttx-release/release-ox64.sh
 echo ----- Validate NuttX Release for Ox64
 
 ## TODO: Update PATH
-export PATH="$HOME/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH"
+## export PATH="$HOME/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH"
 
 echo ----- Remove checkrelease folder
 cd /tmp
@@ -64,9 +64,12 @@ gpg --verify apache-nuttx-$release.tar.gz.asc apache-nuttx-$release.tar.gz
 gpg --verify apache-nuttx-apps-$release.tar.gz.asc apache-nuttx-apps-$release.tar.gz
 
 ## For Linux: Use "sha512sum" instead of "shasum -a 512"
+## For macOS: Use "shasum -a 512" instead of "sha512sum"
 echo '----- [RM] verify the reported hashes:'
-shasum -a 512 -c apache-nuttx-$release.tar.gz.sha512
-shasum -a 512 -c apache-nuttx-apps-$release.tar.gz.sha512
+sha512sum -c apache-nuttx-$release.tar.gz.sha512
+sha512sum -c apache-nuttx-apps-$release.tar.gz.sha512
+## shasum -a 512 -c apache-nuttx-$release.tar.gz.sha512
+## shasum -a 512 -c apache-nuttx-apps-$release.tar.gz.sha512
 
 echo ----- extract src bundle
 tar -xf apache-nuttx-$release.tar.gz
@@ -159,8 +162,9 @@ echo ----- Run the firmware
 echo Insert microSD into Ox64, power on Ox64, run "uname -a" and "free".
 echo Press Enter to begin...
 read
-open -a CoolTerm
 
 echo '===== Ox64 NSH Info and Free'
+screen /dev/tty.usbserial-14* 2000000
+## open -a CoolTerm
 
 echo ----- TODO: Verify hash from uname

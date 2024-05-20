@@ -2,11 +2,11 @@
 ## Validate NuttX Release for PinePhone
 ## Based on https://cwiki.apache.org/confluence/display/NUTTX/Validating+a+staged+Release
 ## Sample Output: https://gist.github.com/lupyuen/5760e0375d44a06b3c730a10614e4d24
-## clear && cd /tmp && script /tmp/release-pinephone.log ~/PinePhone/wip-nuttx/release-pinephone.sh
+## clear && cd /tmp && script /tmp/release-pinephone.log -c ~/nuttx-release/release-pinephone.sh
 echo ----- Validate NuttX Release for PinePhone
 
 ## TODO: Update PATH
-export PATH="$PATH:/Applications/ArmGNUToolchain/13.2.Rel1/aarch64-none-elf/bin"
+## export PATH="$PATH:/Applications/ArmGNUToolchain/13.2.Rel1/aarch64-none-elf/bin"
 
 echo ----- Remove checkrelease folder
 cd /tmp
@@ -47,9 +47,12 @@ gpg --verify apache-nuttx-$release.tar.gz.asc apache-nuttx-$release.tar.gz
 gpg --verify apache-nuttx-apps-$release.tar.gz.asc apache-nuttx-apps-$release.tar.gz
 
 ## For Linux: Use "sha512sum" instead of "shasum -a 512"
+## For macOS: Use "shasum -a 512" instead of "sha512sum"
 echo '----- [RM] verify the reported hashes:'
-shasum -a 512 -c apache-nuttx-$release.tar.gz.sha512
-shasum -a 512 -c apache-nuttx-apps-$release.tar.gz.sha512
+sha512sum -c apache-nuttx-$release.tar.gz.sha512
+sha512sum -c apache-nuttx-apps-$release.tar.gz.sha512
+## shasum -a 512 -c apache-nuttx-$release.tar.gz.sha512
+## shasum -a 512 -c apache-nuttx-apps-$release.tar.gz.sha512
 
 echo ----- extract src bundle
 tar -xf apache-nuttx-$release.tar.gz

@@ -2,11 +2,11 @@
 ## Validate NuttX Release for Star64
 ## Based on https://cwiki.apache.org/confluence/display/NUTTX/Validating+a+staged+Release
 ## Sample Output: https://gist.github.com/lupyuen/0ea8f3ac61e07d8b6e308e31ed5f7734
-## clear && cd /tmp && script /tmp/release-star64.log ~/PinePhone/wip-nuttx/release-star64.sh
+## clear && cd /tmp && script /tmp/release-star64.log -c ~/nuttx-release/release-star64.sh
 echo ----- Validate NuttX Release for Star64
 
 ## TODO: Update PATH
-export PATH="$HOME/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH"
+## export PATH="$HOME/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH"
 
 echo ----- Remove checkrelease folder
 cd /tmp
@@ -64,9 +64,12 @@ gpg --verify apache-nuttx-$release.tar.gz.asc apache-nuttx-$release.tar.gz
 gpg --verify apache-nuttx-apps-$release.tar.gz.asc apache-nuttx-apps-$release.tar.gz
 
 ## For Linux: Use "sha512sum" instead of "shasum -a 512"
+## For macOS: Use "shasum -a 512" instead of "sha512sum"
 echo '----- [RM] verify the reported hashes:'
-shasum -a 512 -c apache-nuttx-$release.tar.gz.sha512
-shasum -a 512 -c apache-nuttx-apps-$release.tar.gz.sha512
+sha512sum -c apache-nuttx-$release.tar.gz.sha512
+sha512sum -c apache-nuttx-apps-$release.tar.gz.sha512
+## shasum -a 512 -c apache-nuttx-$release.tar.gz.sha512
+## shasum -a 512 -c apache-nuttx-apps-$release.tar.gz.sha512
 
 echo ----- extract src bundle
 tar -xf apache-nuttx-$release.tar.gz
@@ -128,12 +131,6 @@ cp .config nuttx.config
 echo ----- Download the Device Tree
 wget https://github.com/starfive-tech/VisionFive2/releases/download/VF2_v3.1.5/jh7110-visionfive-v2.dtb
 cp jh7110-visionfive-v2.dtb jh7110-star64-pine64.dtb
-
-echo ----- Copy NuttX Binary Image, Device Tree and Initial RAM Disk to TFTP Folder
-cp nuttx.bin $HOME/tftproot/Image
-cp jh7110-star64-pine64.dtb $HOME/tftproot
-cp initrd $HOME/tftproot
-ls -l $HOME/tftproot/Image
 
 echo ----- Copy NuttX Binary Image, Device Tree and Initial RAM Disk to TFTP Server
 scp nuttx.bin tftpserver:/tftpboot/Image
