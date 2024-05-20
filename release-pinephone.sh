@@ -5,8 +5,8 @@
 ## clear && cd /tmp && script /tmp/release-pinephone.log -c ~/nuttx-release/release-pinephone.sh
 echo ----- Validate NuttX Release for PinePhone
 
-## TODO: Update PATH
-## export PATH="$PATH:/Applications/ArmGNUToolchain/13.2.Rel1/aarch64-none-elf/bin"
+## TODO: Update PATH for Arm GNU Toolchain aarch64-none-elf
+## export PATH="$HOME/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-elf/bin:$PATH"
 
 echo ----- Remove checkrelease folder
 cd /tmp

@@ -5,7 +5,7 @@
 ## clear && cd /tmp && script /tmp/release-ox64.log -c ~/nuttx-release/release-ox64.sh
 echo ----- Validate NuttX Release for Ox64
 
-## TODO: Update PATH
+## TODO: Update PATH for xPack riscv-none-elf-gcc
 ## export PATH="$HOME/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH"
 
 echo ----- Remove checkrelease folder

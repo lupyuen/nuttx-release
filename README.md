@@ -1,2 +1,2 @@
-# nuttx-release
-Scripts for Apache NuttX RTOS Release Testing
+# Scripts for Apache NuttX RTOS Release Testing
+
