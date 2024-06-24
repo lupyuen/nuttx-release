@@ -98,7 +98,7 @@ aarch64-none-elf-objdump \
   &
 
 echo ----- Wait for microSD
-microsd=/media/luppy/43F4-25ED
+microsd=/media/luppy/A993-6C26
 set +x  #  Don't echo commands
 echo "***** Insert microSD into computer"
 while : ; do
