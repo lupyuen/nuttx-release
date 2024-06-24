@@ -2,7 +2,7 @@
 ## Validate NuttX Release for Ox64
 ## Based on https://cwiki.apache.org/confluence/display/NUTTX/Validating+a+staged+Release
 ## Sample Output: https://gist.github.com/lupyuen/d211428dc43d85b8ec1fd803275e9f26
-## clear && cd /tmp && script /tmp/release-ox64.log -c ~/nuttx-release/release-ox64.sh
+## clear && cd /tmp && script /tmp/release-ox64.log -c ~/nuttx-release/release-ox64.sh && echo Done! /tmp/release-ox64.log
 echo ----- Validate NuttX Release for Ox64
 
 ## TODO: Update PATH for xPack riscv-none-elf-gcc

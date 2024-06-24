@@ -2,7 +2,7 @@
 ## Validate NuttX Release for Star64
 ## Based on https://cwiki.apache.org/confluence/display/NUTTX/Validating+a+staged+Release
 ## Sample Output: https://gist.github.com/lupyuen/0ea8f3ac61e07d8b6e308e31ed5f7734
-## clear && cd /tmp && script /tmp/release-star64.log -c ~/nuttx-release/release-star64.sh
+## clear && cd /tmp && script /tmp/release-star64.log -c ~/nuttx-release/release-star64.sh && echo Done! /tmp/release-star64.log
 echo ----- Validate NuttX Release for Star64
 
 ## TODO: Update PATH for xPack riscv-none-elf-gcc
