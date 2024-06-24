@@ -141,6 +141,6 @@ echo Press Enter to begin...
 read
 
 echo '===== PinePhone NSH Info and Free'
-sudo screen "$usbserial" 115200
+screen "$usbserial" 115200
 
 echo ----- TODO: Verify hash from uname

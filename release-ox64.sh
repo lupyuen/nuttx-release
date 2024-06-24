@@ -180,7 +180,7 @@ echo Press Enter to begin...
 read
 
 echo '===== Ox64 NSH Info and Free'
-sudo screen "$usbserial" 2000000
+screen "$usbserial" 2000000
 ## open -a CoolTerm
 
 echo ----- TODO: Verify hash from uname

@@ -158,6 +158,6 @@ echo Press Enter to begin...
 read
 
 echo '===== Star64 NSH Info and Free'
-sudo screen "$usbserial" 115200
+screen "$usbserial" 115200
 
 echo ----- TODO: Verify hash from uname
