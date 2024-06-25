@@ -25,6 +25,9 @@ else
   script_option=
 fi
 
+## Close the `screen` session
+$script_dir/close.exp
+
 ## Run the script
 pushd /tmp
 script $log_file \
