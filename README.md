@@ -29,7 +29,7 @@ sudo apt install -y \
   libgmp-dev libmpc-dev libmpfr-dev libisl-dev binutils-dev libelf-dev \
   libexpat-dev gcc-multilib g++-multilib picocom u-boot-tools util-linux
 sudo apt install -y kconfig-frontends
-sudo apt install -y expect
+sudo apt install -y expect gh
 
 ## Optional: For TinyEMU
 sudo apt install -y emscripten

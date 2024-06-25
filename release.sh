@@ -50,6 +50,13 @@ cat $log_file \
 mv $tmp_file $log_file
 echo ----- "Done! $log_file"
 
+## Upload to GitHub Gist
+cat $log_file | \
+  gh gist create \
+  --public \
+  --desc "Validate NuttX Release for $device ($release / $candidate / $hash)" \
+  --filename "validate-nuttx-release-$device-$release-$candidate-$hash.log"
+
 ## Check for hash
 grep $hash $log_file || true
 matches=$(grep $hash $log_file | grep -v "hash=" | wc -c)
