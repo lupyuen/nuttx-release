@@ -2,8 +2,11 @@
 ## Validate NuttX Release for PinePhone
 ## Based on https://cwiki.apache.org/confluence/display/NUTTX/Validating+a+staged+Release
 ## Sample Output: https://gist.github.com/lupyuen/5760e0375d44a06b3c730a10614e4d24
-## clear && cd /tmp && script /tmp/release-pinephone.log -c ~/nuttx-release/release-pinephone.sh && echo Done! /tmp/release-pinephone.log
+## clear && ~/nuttx-release/release.sh pinephone
 echo ----- Validate NuttX Release for PinePhone
+echo release=$release
+echo candidate=$candidate
+echo hash=$hash
 
 ## TODO: Update PATH for Arm GNU Toolchain aarch64-none-elf
 ## export PATH="$HOME/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-elf/bin:$PATH"
@@ -14,10 +17,6 @@ rm -r checkrelease
 
 set -e  ## Exit when any command fails
 set -x  ## Echo commands
-
-## TODO: Update release and candidate
-release=12.5.1
-candidate=RC0
 
 ## Build NuttX
 function build_nuttx {

@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 ## Validate NuttX Release: release.sh milkvduos / ox64 / star64 / pinephone
 
-set -e  ## Exit when any command fails
-set -x  ## Echo commands
-
 ## TODO: Update for the release
-release=12.5.1
-candidate=RC0
-hash=abc
+export release=12.5.1
+export candidate=RC0
+export hash=9e8753d625
 
 device=$1
 echo ----- Validate NuttX Release for $device
+echo https://github.com/lupyuen/nuttx-release/blob/main/release-$1.sh
+
+set -e  ## Exit when any command fails
+set -x  ## Echo commands
 
 ## Get the Script Directory
 script_path="${BASH_SOURCE}"
@@ -30,11 +31,25 @@ script $log_file \
   $script_option \
   $script_dir/release-$device.sh
 popd
-echo Done! $log_file
+
+## Strip the control chars
+tmp_file=/tmp/release-tmp.log
+cat $log_file \
+  | tr -d '\r' \
+  | tr -d '\r' \
+  | sed 's/\x08/ /g' \
+  | sed 's/\x1B(B//g' \
+  | sed 's/\x1B\[K//g' \
+  | sed 's/\x1B[<=>]//g' \
+  | sed 's/\x1B\[[0-9:;<=>?]*[!]*[A-Za-z]//g' \
+  | sed 's/\x1B[@A-Z\\\]^_]\|\x1B\[[0-9:;<=>?]*[-!"#$%&'"'"'()*+,.\/]*[][\\@A-Z^_`a-z{|}~]//g' \
+  >$tmp_file
+mv $tmp_file $log_file
+echo ----- "Done! $log_file"
 
 ## Check for hash
 grep $hash $log_file || true
-matches=$(grep $hash $log_file | wc -c)
+matches=$(grep $hash $log_file | grep -v "hash=" | wc -c)
 if [ "$matches" -eq "0" ]; then
   echo ----- "ERROR: Hash $hash not found!"
   exit 1
