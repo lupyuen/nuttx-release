@@ -6,12 +6,12 @@ export release=12.5.1
 export candidate=RC0
 export hash=9e8753d625
 
+set -e  ## Exit when any command fails
+set -x  ## Echo commands
+
 device=$1
 echo ----- Validate NuttX Release for $device
 echo https://github.com/lupyuen/nuttx-release/blob/main/release-$1.sh
-
-set -e  ## Exit when any command fails
-set -x  ## Echo commands
 
 ## Get the Script Directory
 script_path="${BASH_SOURCE}"

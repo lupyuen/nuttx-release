@@ -7,6 +7,7 @@ echo ----- Validate NuttX Release for PinePhone
 echo release=$release
 echo candidate=$candidate
 echo hash=$hash
+echo https://github.com/lupyuen/nuttx-release/blob/main/release-pinephone.sh
 
 ## TODO: Update PATH for Arm GNU Toolchain aarch64-none-elf
 ## export PATH="$HOME/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-elf/bin:$PATH"

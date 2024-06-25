@@ -7,6 +7,7 @@ echo ----- Validate NuttX Release for Milk-V Duo S
 echo release=$release
 echo candidate=$candidate
 echo hash=$hash
+echo https://github.com/lupyuen/nuttx-release/blob/main/release-milkvduos.sh
 
 ## TODO: Update PATH
 export PATH="$HOME/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH"
