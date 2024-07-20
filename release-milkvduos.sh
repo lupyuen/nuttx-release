@@ -153,7 +153,43 @@ echo Start TFTP Server, power on Milk-V Duo S, run "uname -a" and "free".
 echo Press Enter to begin...
 read
 
+## Get the Home Assistant Token, copied from http://localhost:8123/profile/security
+## token=xxxx
+set +x  ##  Disable echo
+. $HOME/home-assistant-token.sh
+set -x  ##  Enable echo
+
+set +x  ##  Disable echo
+echo "----- Power Off the SBC"
+curl \
+    -X POST \
+    -H "Authorization: Bearer $token" \
+    -H "Content-Type: application/json" \
+    -d '{"entity_id": "automation.sg2000_power_off"}' \
+    http://localhost:8123/api/services/automation/trigger
+set -x  ##  Enable echo
+
+set +x  ##  Disable echo
+echo "----- Power On the SBC"
+curl \
+    -X POST \
+    -H "Authorization: Bearer $token" \
+    -H "Content-Type: application/json" \
+    -d '{"entity_id": "automation.sg2000_power_on"}' \
+    http://localhost:8123/api/services/automation/trigger
+set -x  ##  Enable echo
+
 echo '===== Milk-V Duo S NSH Info and Free'
 screen /dev/tty.usbserial-0001 115200
+
+set +x  ##  Disable echo
+echo "----- Power Off the SBC"
+curl \
+    -X POST \
+    -H "Authorization: Bearer $token" \
+    -H "Content-Type: application/json" \
+    -d '{"entity_id": "automation.sg2000_power_off"}' \
+    http://localhost:8123/api/services/automation/trigger
+set -x  ##  Enable echo
 
 echo ----- TODO: Verify hash from uname

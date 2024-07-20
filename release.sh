@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-## Validate NuttX Release: release.sh milkvduos / ox64 / star64 / pinephone
+## Validate NuttX Release: ~/nuttx-release/release.sh milkvduos / ox64 / star64 / pinephone
 
 ## TODO: Update for the release
-export release=12.5.1
+export release=12.6.0
 export candidate=RC0
-export hash=9e8753d625
+export hash=14da04e988
 
 set -e  ## Exit when any command fails
 set -x  ## Echo commands
