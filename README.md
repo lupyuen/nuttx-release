@@ -31,6 +31,17 @@ sudo apt install -y \
 sudo apt install -y kconfig-frontends
 sudo apt install -y expect gh
 
+## Install xPack GCC Toolchain for RISC-V (Linux x64)
+wget https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v13.2.0-2/xpack-riscv-none-elf-gcc-13.2.0-2-linux-x64.tar.gz
+tar xf xpack-riscv-none-elf-gcc-13.2.0-2-linux-x64.tar.gz
+export PATH=$PWD/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH
+riscv-none-elf-gcc -v
+## Should show: `gcc version 13.2.0 (xPack GNU RISC-V Embedded GCC x86_64)`
+
+wget https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v12.3.0-1/xpack-riscv-none-elf-gcc-12.3.0-1-linux-arm64.tar.gz
+$ tar xf xpack-riscv-none-elf-gcc-12.3.0-1-linux-arm64.tar.gz
+$ export PATH=$PWD/xpack-riscv-none-elf-gcc-12.3.0-1/bin:$PATH
+
 ## Optional: For TinyEMU
 sudo apt install -y emscripten
 
@@ -42,4 +53,27 @@ gpg --edit-key 9208D2E4B800D66F749AD4E94137A71698C5E4DB
 
 ## Optional: For VSCode
 sudo snap install code
+
+## Tested on Ubuntu 24.04 LTS x86_64
+$ neofetch
+            .-/+oossssoo+/-.               luppy@luppy-macbook-ubuntu
+        `:+ssssssssssssssssss+:`           --------------------------
+      -+ssssssssssssssssssyyssss+-         OS: Ubuntu 24.04 LTS x86_64
+    .ossssssssssssssssssdMMMNysssso.       Host: MacBookPro10,1 1.0
+   /ssssssssssshdmmNNmmyNMMMMhssssss/      Kernel: 6.8.0-40-generic
+  +ssssssssshmydMMMMMMMNddddyssssssss+     Uptime: 20 mins
+ /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/    Packages: 2447 (dpkg), 26 (snap)
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.   Shell: bash 5.2.21
++sssshhhyNMMNyssssssssssssyNMMMysssssss+   Resolution: 1920x1080
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   Terminal: /dev/pts/2
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   CPU: Intel i7-3820QM (8) @ 3.700GHz
++sssshhhyNMMNyssssssssssssyNMMMysssssss+   GPU: NVIDIA GeForce GT 650M Mac Edition
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.   GPU: Intel 3rd Gen Core processor Graphics Controller
+ /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/    Memory: 4210MiB / 15898MiB
+  +sssssssssdmydMMMMMMMMddddyssssssss+
+   /ssssssssssshdmNNNNmyNMMMMhssssss/
+    .ossssssssssssssssssdMMMNysssso.
+      -+sssssssssssssssssyyyssss+-
+        `:+ssssssssssssssssss+:`
+            .-/+oossssoo+/-.
 ```
