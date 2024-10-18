@@ -22,6 +22,7 @@ for (( ; ; )); do
       git clone https://github.com/apache/nuttx-apps apps ;
       pushd nuttx ; echo NuttX Source: https://github.com/apache/nuttx/tree/\$(git rev-parse HEAD) ; popd ;
       pushd apps  ; echo NuttX Apps: https://github.com/apache/nuttx-apps/tree/\$(git rev-parse HEAD) ; popd ;
+      sleep 10 ;
       cd nuttx/tools/ci ;
       ./cibuild.sh -c -A -N -R testlist/$board.dat ;
     "
