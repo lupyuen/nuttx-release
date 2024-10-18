@@ -4,6 +4,7 @@
 # set -e  ## Exit when any command fails
 set -x  ## Echo commands
 
+for (( ; ; )); do
 for board in \
   arm-01 arm-02 arm-03 arm-04 \
   arm-05 arm-06 arm-07 arm-08 \
@@ -22,4 +23,5 @@ sudo docker run -it \
   cd nuttx/tools/ci ;
   ./cibuild.sh -c -A -N -R testlist/$board.dat ;
 "
+done
 done
