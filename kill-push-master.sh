@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 ## Kill all Merge Jobs pushing to master branch.
 ## Change `protect_id` to the Run ID of the Merge Job that shall be restarted and shouldn't be cancelled
-## We shall update `protect_id` Four Times Per Day at 00:00, 06:00, 12:00, 18:00 UTC
+## We shall update `protect_id` Two Times Per Day at 00:00, 12:00 UTC
 ## Run IDs are here: https://github.com/apache/nuttx/actions/workflows/build.yml?query=branch%3Amaster+event%3Apush
-protect_id=11403246629
+protect_id=11406996316
 for (( ; ; ))
 do
   ## For apache/nuttx: Kill all Merge Jobs pushing to master branch
