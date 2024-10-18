@@ -11,8 +11,16 @@ for (( ; ; )); do
     arm-09 arm-10 arm-11 arm-12 \
     arm-13 arm-14
   do
+    ## Show the System Info
+    neofetch
+    sleep 10
+
+    ## Download the Docker Image
     sudo docker pull \
       ghcr.io/apache/nuttx/apache-nuttx-ci-linux:latest
+    sleep 10
+
+    ## Run the CI in Docker Container
     sudo docker run -it \
       ghcr.io/apache/nuttx/apache-nuttx-ci-linux:latest \
       /bin/bash -c "
