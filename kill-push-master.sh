@@ -20,9 +20,10 @@ do
     fi
   done
 
-  ## Restart the Protected Job, in case a new merge has cancelled it.
+  ## UPDATE: We no longer restart the Protected Job.
+  ## Previously: Restart the Protected Job, in case a new merge has cancelled it.
   ## Ignore the error: "cannot be rerun; its workflow file may be broken"
-  gh run rerun --repo apache/nuttx --debug --failed $protect_id
+  ## gh run rerun --repo apache/nuttx --debug --failed $protect_id
 
   ## For apache/nuttx-apps: Kill all Merge Jobs pushing to master branch
   run_list="
