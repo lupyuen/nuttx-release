@@ -2,6 +2,7 @@
 ## Run a NuttX CI Job with Docker
 
 echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-job.sh
+echo Called by https://github.com/lupyuen/nuttx-release/blob/main/run-ci.sh
 set -x  ## Echo commands
 
 # Parameter is CI Job, like "arm-01"
