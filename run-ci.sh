@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 ## Run NuttX CI with Docker
 
-# set -e  ## Exit when any command fails
+echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-ci.sh
 set -x  ## Echo commands
-
 device=ci
 
 ## Get the Script Directory
