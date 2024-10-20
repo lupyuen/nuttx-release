@@ -29,7 +29,7 @@ function run_job {
 
 ## Strip the control chars
 function clean_log {
-  tmp_file=/tmp/release-tmp.log
+  local tmp_file=/tmp/release-tmp.log
   cat $log_file \
     | tr -d '\r' \
     | tr -d '\r' \
@@ -42,6 +42,16 @@ function clean_log {
     >$tmp_file
   mv $tmp_file $log_file
   echo ----- "Done! $log_file"
+}
+
+## Search for Errors and Warnings
+function find_messages {
+  local tmp_file=/tmp/release-tmp.log
+  local msg_file=/tmp/release-msg.log
+  local pattern='^(.*):(\d+):(\d+):\s+(warning|fatal error|error):\s+(.*)$'
+  grep -P "$pattern" $log_file > $msg_file
+  cat $msg_file $log_file >$tmp_file
+  mv $tmp_file $log_file
 }
 
 ## Upload to GitHub Gist
@@ -64,9 +74,10 @@ for (( ; ; )); do
     arm-09 arm-10 arm-11 arm-12 \
     arm-13 arm-14
   do
-    ## Run the CI Job
+    ## Run the CI Job and find errors / warnings
     run_job $job
     clean_log
+    find_messages
 
     ## Get the hashes for NuttX and Apps
     nuttx_hash=$(grep --only-matching -E "nuttx/tree/[0-9a-z]+" $log_file | grep --only-matching -E "[0-9a-z]+$")
