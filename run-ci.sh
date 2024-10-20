@@ -49,7 +49,9 @@ function find_messages {
   local tmp_file=/tmp/release-tmp.log
   local msg_file=/tmp/release-msg.log
   local pattern='^(.*):(\d+):(\d+):\s+(warning|fatal error|error):\s+(.*)$'
-  grep -P "$pattern" $log_file > $msg_file
+  grep -P "$pattern" $log_file \
+    | uniq \
+    > $msg_file
   cat $msg_file $log_file >$tmp_file
   mv $tmp_file $log_file
 }
