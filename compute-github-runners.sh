@@ -3,6 +3,7 @@
 ## We Accumulate the GitHub Job Duration and Extrapolate the GitHub Runner Hours.
 
 ## Job Duration to Runner Hours is inflated slightly
+## https://docs.google.com/spreadsheets/d/1ujGKmUyy-cGY-l1pDBfle_Y6LKMsNp7o3rbfT1UkiZE/edit?gid=1163309346#gid=1163309346
 duration_hours_to_runner_hours=8
 
 ## For Testing:
