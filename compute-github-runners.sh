@@ -10,7 +10,7 @@ duration_hours_to_runner_hours=8
 ## date=2024-10-21
 ## hours=24
 date=$(date -u +'%Y-%m-%d')
-hours=$(( 1+$(date -u +'%H') ))
+hours=$(bc -e "1+$(date -u +'%H')")
 
 ## Set the GitHub Token: export GITHUB_TOKEN=...
 ## Any Token with Read-Access to NuttX Repo will do:
