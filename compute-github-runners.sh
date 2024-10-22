@@ -27,6 +27,8 @@ function add_runner_hours {
       --jq '.[].databaseId'
   )
 
+  ## Call GitHub API to get the Job Duration
+  ## https://docs.github.com/en/rest/actions/workflow-runs?apiVersion=2022-11-28#get-workflow-run-usage
   for run_id in $run_ids; do
     # echo run_id=$run_id
     local run_duration_ms=$(
