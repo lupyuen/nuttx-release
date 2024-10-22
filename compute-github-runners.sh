@@ -13,6 +13,8 @@ date=$(date -u +'%Y-%m-%d')
 hours=$(( 1+$(date -u +'%H') ))
 
 ## Set the GitHub Token: export GITHUB_TOKEN=...
+## Any Token with Read-Access to NuttX Repo will do:
+## "public_repo" (Access public repositories)
 . $HOME/github-token.sh
 
 ## Accumulate the Job Duration and Extrapolate the Runner Hours
