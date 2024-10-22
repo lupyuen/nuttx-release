@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Estimate the GitHub Runner Hours for the day so far (by UTC time).
+## Estimate the consumed GitHub Full-Time Runners for the day so far (by UTC time).
 ## We Accumulate the GitHub Job Duration and Extrapolate the GitHub Runner Hours.
 
 ## Job Duration to Runner Hours is inflated slightly
