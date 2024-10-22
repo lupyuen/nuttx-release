@@ -30,7 +30,6 @@ function add_runner_hours {
   ## Call GitHub API to get the Job Duration
   ## https://docs.github.com/en/rest/actions/workflow-runs?apiVersion=2022-11-28#get-workflow-run-usage
   for run_id in $run_ids; do
-    # echo run_id=$run_id
     local run_duration_ms=$(
       curl -L --silent \
         -H "Accept: application/vnd.github+json" \
@@ -42,7 +41,8 @@ function add_runner_hours {
     if [[ "$run_duration_ms" == "null" ]]; then
       continue
     fi
-    # echo run_duration_ms=$run_duration_ms
+
+    ## Extrapolate the Job Duration to Runner Hours
     local runner_hours=$(
       bc -e "$duration_hours_to_runner_hours*$run_duration_ms/1000/60/60"
     )
