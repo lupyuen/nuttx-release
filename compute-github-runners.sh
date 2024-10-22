@@ -78,7 +78,7 @@ total_job_hours_rounded=$(
   bc -l -e "r($total_job_hours,1)"
 )
 total_runner_hours_rounded=$(
-  bc -l -e "r($total_runner_hours,1)"
+  bc -l -e "r($total_runner_hours,0)"
 )
 echo date=$date
 echo hours=$hours
