@@ -53,9 +53,6 @@ function add_runner_hours {
     )
     # echo runner_hours=$runner_hours
     if [[ "$runner_hours" != "0" ]]; then
-      total_runner_hours=$(
-        bc -l -e "$total_runner_hours+$runner_hours"
-      )
       local runner_hours_rounded=$(
         bc -l -e "r($runner_hours,1)"
       )
@@ -67,22 +64,24 @@ function add_runner_hours {
 ## Accumulate the Runner Hours for nuttx and nuttx-apps repos
 echo run_id,run_duration_ms,runner_hours
 total_job_hours=0
-total_runner_hours=0
 add_runner_hours apache/nuttx
 add_runner_hours apache/nuttx-apps
 
 ## Compute the Full-Time Runners
+total_runner_hours=$(
+  bc -l -e "$duration_hours_to_runner_hours*$total_job_hours"
+)
 fulltime_runners=$(
   bc -e "$total_runner_hours/$hours"
 )
-total_job_hours=$(
+total_job_hours_rounded=$(
   bc -l -e "r($total_job_hours,1)"
 )
-total_runner_hours=$(
+total_runner_hours_rounded=$(
   bc -l -e "r($total_runner_hours,1)"
 )
 echo date=$date
 echo hours=$hours
-echo total_job_hours=$total_job_hours
-echo total_runner_hours=$total_runner_hours
+echo total_job_hours=$total_job_hours_rounded
+echo total_runner_hours=$total_runner_hours_rounded
 echo fulltime_runners=$fulltime_runners
