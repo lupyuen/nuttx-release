@@ -4,7 +4,7 @@
 
 ## Job Duration to Runner Hours is inflated slightly
 ## https://docs.google.com/spreadsheets/d/1ujGKmUyy-cGY-l1pDBfle_Y6LKMsNp7o3rbfT1UkiZE/edit?gid=1163309346#gid=1163309346
-duration_hours_to_runner_hours=8
+duration_hours_to_runner_hours=7.4
 
 ## For Testing:
 ## date=2024-10-21
