@@ -40,6 +40,8 @@ function add_runner_hours {
         https://api.github.com/repos/$repo/actions/runs/$run_id/timing \
         | jq '.run_duration_ms'
     )
+    # Beware of GitHub API Rate Limits
+    sleep 0.1
     if [[ "$run_duration_ms" == "null" ]]; then
       continue
     fi
@@ -51,7 +53,6 @@ function add_runner_hours {
     local runner_hours=$(
       bc -l -e "$duration_hours_to_runner_hours*$run_duration_ms/1000/60/60"
     )
-    # echo runner_hours=$runner_hours
     if [[ "$runner_hours" != "0" ]]; then
       local runner_hours_rounded=$(
         bc -l -e "r($runner_hours,1)"
