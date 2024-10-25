@@ -93,6 +93,7 @@ for (( ; ; )); do
 
   ## Free up the Docker disk space
   sudo docker system prune --force
+  df -H
 done
 
 ## Here's how we delete the 20 latest gists
