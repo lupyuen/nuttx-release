@@ -31,5 +31,7 @@ sudo docker run -it \
   sleep 10 ;
   cd nuttx/tools/ci ;
   ./cibuild.sh -c -A -N -R testlist/$job.dat ;
-  df -H ;
 "
+
+## Monitor the Disk Space (in case Docker takes too much)
+df -H
