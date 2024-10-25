@@ -31,4 +31,5 @@ sudo docker run -it \
   sleep 10 ;
   cd nuttx/tools/ci ;
   ./cibuild.sh -c -A -N -R testlist/$job.dat ;
+  df -H ;
 "
