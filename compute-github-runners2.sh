@@ -42,7 +42,7 @@ function add_runner_hours {
         | jq '.run_duration_ms'
     )
     # Beware of GitHub API Rate Limits
-    sleep 0.1
+    sleep 1
     if [[ "$run_duration_ms" == "null" ]]; then
       continue
     fi
