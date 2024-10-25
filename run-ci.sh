@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ## Run NuttX CI with Docker
+## Read the article: https://lupyuen.codeberg.page/articles/ci2.html
 
 echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-ci.sh
 set -x  ## Echo commands
@@ -89,4 +90,15 @@ for (( ; ; )); do
     upload_log $job $nuttx_hash $apps_hash
     sleep 10
   done
+
+  ## Free up the Docker disk space
+  sudo docker system prune --force
 done
+
+## Here's how we delete the 20 latest gists
+function delete_gists {
+  local gist_ids=$(sudo gh gist list --limit 20 | cut --fields=1)
+  for gist_id in $gist_ids; do
+    sudo gh gist delete $gist_id
+  done
+}

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ## Run a NuttX CI Job with Docker
+## Read the article: https://lupyuen.codeberg.page/articles/ci2.html
 
 echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-job.sh
 echo Called by https://github.com/lupyuen/nuttx-release/blob/main/run-ci.sh
