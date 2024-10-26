@@ -3,8 +3,8 @@
 
 ## TODO: Update for the release
 export release=12.7.0
-export candidate=RC0
-export hash=10e44f8915
+export candidate=RC1
+export hash=5d8cdeaea8
 
 set -e  ## Exit when any command fails
 set -x  ## Echo commands
