@@ -30,7 +30,7 @@ sudo docker run -it \
   pushd apps  ; echo NuttX Apps: https://github.com/apache/nuttx-apps/tree/\$(git rev-parse HEAD) ; popd ;
   sleep 10 ;
   cd nuttx/tools/ci ;
-  (./cibuild.sh -c -A -N -R testlist/$job.dat || echo "***** BUILD FAILED") ;
+  (./cibuild.sh -c -A -N -R testlist/$job.dat || echo '***** BUILD FAILED') ;
 "
 
 ## Monitor the Disk Space (in case Docker takes too much)
