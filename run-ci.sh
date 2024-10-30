@@ -74,6 +74,7 @@ function upload_log {
 ## Repeat forever for All CI Jobs
 for (( ; ; )); do
   for job in \
+    risc-v-02 risc-v-03 \
     arm-01 arm-02 arm-03 arm-04 \
     arm-05 arm-06 arm-07 arm-08 \
     arm-09 arm-10 arm-11 arm-12 \
