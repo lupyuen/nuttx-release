@@ -22,6 +22,26 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## Change: max-parallel: 12
+## To:     max-parallel: 12\n      fail-fast: false
+## TODO: Linux max-parallel may change
+search="max-parallel: 12"
+replace="max-parallel: 12\n      fail-fast: false"
+cat $file \
+  | sed "s/$search/$replace/g" \
+  >$tmp_file
+mv $tmp_file $file
+
+## Change: max-parallel: 2
+## To:     max-parallel: 2\n      fail-fast: false
+## TODO: macOS max-parallel may change
+search="max-parallel: 2"
+replace="max-parallel: 2\n      fail-fast: false"
+cat $file \
+  | sed "s/$search/$replace/g" \
+  >$tmp_file
+mv $tmp_file $file
+
 ## Change: if [[ "${{ inputs.os }}" != "Linux" ]]; then
 ## To:     if [[ "${{ inputs.os }}" == "NOTUSED" ]]; then
 file=.github/workflows/arch.yml
