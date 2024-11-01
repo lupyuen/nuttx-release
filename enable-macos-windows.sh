@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-## Enable the macOS and Windows Builds for NuttX Mirror
+## Enable the macOS and Windows Builds for NuttX Mirror.
+## Disable Fail-Fast, so all builds will complete.
+## Remove Max Parallel, so builds can finish faster.
 
 set -e  #  Exit when any command fails
 set -x  #  Echo commands
