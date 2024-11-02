@@ -45,11 +45,11 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
-## Change: if [[ "${{ inputs.os }}" != "Linux" ]]; then
+## Change: if [[ "${{ inputs.os }}" == "macOS" ]]; then
 ## To:     if [[ "${{ inputs.os }}" == "NOTUSED" ]]; then
 file=.github/workflows/arch.yml
 tmp_file=$tmp_dir/arch.yml
-search="!= \"Linux\""
+search="== \"macOS\""
 replace="== \"NOTUSED\""
 cat $file \
   | sed "s/$search/$replace/g" \
