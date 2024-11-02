@@ -56,18 +56,6 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
-## TODO: Remove this
-## Change: if [[ "${{ inputs.os }}" != "Linux" ]]; then
-## To:     if [[ "${{ inputs.os }}" == "NOTUSED" ]]; then
-file=.github/workflows/arch.yml
-tmp_file=$tmp_dir/arch.yml
-search="!= \"Linux\""
-replace="== \"NOTUSED\""
-cat $file \
-  | sed "s/$search/$replace/g" \
-  >$tmp_file
-mv $tmp_file $file
-
 ## Commit the modified files
 git pull
 git status
