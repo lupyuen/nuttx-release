@@ -13,12 +13,21 @@ cd $tmp_dir
 git clone https://github.com/NuttX/nuttx
 cd nuttx
 
-## Change: uses: apache/nuttx/.github/workflows/arch.yml@master
-## To:     uses: NuttX/nuttx/.github/workflows/arch.yml@releases/master
+## Change: branches:
+## To:     branches:\n - master
 file=.github/workflows/build.yml
 tmp_file=$tmp_dir/build.yml
+search='branches:'
+replace='branches:\n      - master'
+cat $file \
+  | sed "s/$search/$replace/g" \
+  >$tmp_file
+mv $tmp_file $file
+
+## Change: uses: apache/nuttx/.github/workflows/arch.yml@master
+## To:     uses: NuttX/nuttx/.github/workflows/arch.yml@master
 search='apache\/nuttx\/.github\/workflows\/arch.yml@master'
-replace='NuttX\/nuttx\/.github\/workflows\/arch.yml@releases\/master'
+replace='NuttX\/nuttx\/.github\/workflows\/arch.yml@master'
 cat $file \
   | sed "s/$search/$replace/g" \
   >$tmp_file
