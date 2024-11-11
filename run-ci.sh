@@ -77,9 +77,7 @@ for (( ; ; )); do
     arm-01 arm-02 arm-03 arm-04 \
     arm-05 arm-06 arm-07 arm-08 \
     arm-09 arm-10 arm-11 arm-12 \
-    arm-13 arm-14 \
-    risc-v-02 risc-v-03 \
-    sim-03
+    arm-13 arm-14
   do
     ## Run the CI Job and find errors / warnings
     run_job $job
