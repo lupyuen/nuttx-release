@@ -40,6 +40,7 @@ function clean_log {
     | sed 's/\x1B[<=>]//g' \
     | sed 's/\x1B\[[0-9:;<=>?]*[!]*[A-Za-z]//g' \
     | sed 's/\x1B[@A-Z\\\]^_]\|\x1B\[[0-9:;<=>?]*[-!"#$%&'"'"'()*+,.\/]*[][\\@A-Z^_`a-z{|}~]//g' \
+    | cat -v \
     >$tmp_file
   mv $tmp_file $log_file
   echo ----- "Done! $log_file"
