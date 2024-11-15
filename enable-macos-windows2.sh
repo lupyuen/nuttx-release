@@ -11,7 +11,7 @@ tmp_dir=$TMP/enable-macos-windows
 rm -rf $tmp_dir
 mkdir $tmp_dir
 cd $tmp_dir
-git clone https://github.com/NuttX/nuttx
+git clone ssh://git@github.com/NuttX/nuttx
 cd nuttx
 
 ## Change: branches:
