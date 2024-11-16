@@ -2,6 +2,7 @@
 ## Enable the macOS and Windows Builds for NuttX Mirror.
 ## Disable Fail-Fast, so all builds will complete.
 ## Remove Max Parallel, so builds can finish faster.
+## https://lupyuen.codeberg.page/articles/ci3.html
 
 set -e  #  Exit when any command fails
 set -x  #  Echo commands
@@ -13,6 +14,7 @@ cd $tmp_dir
 git clone ssh://git@github.com/NuttX/nuttx
 cd nuttx
 
+## Build on Push to Master Branch
 ## Change: branches:
 ## To:     branches:\n - master
 file=.github/workflows/build.yml
@@ -24,6 +26,7 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## Point to local arch.yml
 ## Change: uses: apache/nuttx/.github/workflows/arch.yml@master
 ## To:     uses: NuttX/nuttx/.github/workflows/arch.yml@master
 search='apache\/nuttx\/.github\/workflows\/arch.yml@master'
@@ -33,6 +36,7 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## Continue the Linux Builds, regardless of error
 ## Change: max-parallel: 12
 ## To:     fail-fast: false
 ## TODO: Linux max-parallel may change
@@ -43,6 +47,7 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## Continue the macOS Builds, regardless of error
 ## Change: max-parallel: 2
 ## To:     fail-fast: false
 ## TODO: macOS max-parallel may change
@@ -53,6 +58,7 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## If CI Test Hangs: Kill it after 2 hours
 ## Change: ./cibuild.sh
 ## To:     ( sleep 7200 ; echo Killing pytest... ; pkill -f pytest )& \n ./cibuild.sh'
 search='                .\/cibuild.sh'
@@ -62,6 +68,7 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## Enable the macOS Builds
 ## Change: if [[ "${{ inputs.os }}" == "macOS" ]]; then
 ## To:     if [[ "${{ inputs.os }}" == "NOTUSED" ]]; then
 file=.github/workflows/arch.yml
