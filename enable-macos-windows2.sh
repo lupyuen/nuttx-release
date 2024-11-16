@@ -54,6 +54,15 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## Change: ./cibuild.sh
+## To:     ( sleep 3600 ; echo Killing pytest... ; pkill -f pytest )& \n ./cibuild.sh'
+search='                .\/cibuild.sh'
+replace='                ( sleep 3600 ; echo Killing pytest... ; pkill -f pytest )\&\n                .\/cibuild.sh'
+cat $file \
+  | sed "s/$search/$replace/g" \
+  >$tmp_file
+mv $tmp_file $file
+
 ## Change: if [[ "${{ inputs.os }}" == "macOS" ]]; then
 ## To:     if [[ "${{ inputs.os }}" == "NOTUSED" ]]; then
 file=.github/workflows/arch.yml
