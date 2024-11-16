@@ -55,9 +55,9 @@ cat $file \
 mv $tmp_file $file
 
 ## Change: ./cibuild.sh
-## To:     ( sleep 3600 ; echo Killing pytest... ; pkill -f pytest )& \n ./cibuild.sh'
+## To:     ( sleep 7200 ; echo Killing pytest... ; pkill -f pytest )& \n ./cibuild.sh'
 search='                .\/cibuild.sh'
-replace='                ( sleep 3600 ; echo Killing pytest... ; pkill -f pytest )\&\n                .\/cibuild.sh'
+replace='                ( sleep 7200 ; echo Killing pytest... ; pkill -f pytest )\&\n                .\/cibuild.sh'
 cat $file \
   | sed "s/$search/$replace/g" \
   >$tmp_file
