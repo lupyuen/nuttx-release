@@ -32,7 +32,7 @@ sudo docker run -it \
   pushd apps  ; echo NuttX Apps: https://github.com/apache/nuttx-apps/tree/\$(git rev-parse HEAD) ; popd ;
   sleep 10 ;
   cd nuttx/tools/ci ;
-  ( sleep 3600 ; echo Killing pytest... ; pkill -f pytest )&
+  ( sleep 3600 ; echo Killing pytest after timeout... ; pkill -f pytest )&
   (./cibuild.sh -c -A -N -R testlist/$job.dat || echo '***** BUILD FAILED') ;
 "
 
