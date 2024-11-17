@@ -73,14 +73,12 @@ function upload_log {
 }
 
 ## Repeat forever for All CI Jobs
-## risc-v-05: CI Test may hang, we move to the end
 for (( ; ; )); do
   for job in \
     arm-01 arm-02 arm-03 arm-04 sim-01 \
     arm-05 arm-06 arm-07 arm-08 sim-02 \
     arm-09 arm-10 arm-11 arm-12 sim-03 \
-    arm-13 arm-14 x86_64-01 \
-    risc-v-05
+    arm-13 arm-14 x86_64-01
   do
     ## Run the CI Job and find errors / warnings
     run_job $job
