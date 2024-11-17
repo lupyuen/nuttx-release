@@ -85,5 +85,5 @@ mv $tmp_file $file
 git pull
 git status
 git add .
-git commit --all --message="Enable macOS and Windows Builds"
+git commit --all --message="Enable macOS Builds https://github.com/lupyuen/nuttx-release/blob/main/enable-macos-windows2.sh"
 git push
