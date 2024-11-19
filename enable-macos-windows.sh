@@ -58,16 +58,6 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
-## If CI Test Hangs: Kill it after 2 hours
-## Change: ./cibuild.sh
-## To:     ( sleep 7200 ; echo Killing pytest after timeout... ; pkill -f pytest )& \n ./cibuild.sh'
-search='                .\/cibuild.sh'
-replace='                ( sleep 7200 ; echo Killing pytest after timeout... ; pkill -f pytest )\&\n                .\/cibuild.sh'
-cat $file \
-  | sed "s/$search/$replace/g" \
-  >$tmp_file
-mv $tmp_file $file
-
 ## Enable the macOS Builds
 ## Change: if [[ "${{ inputs.os }}" == "macOS" ]]; then
 ## To:     if [[ "${{ inputs.os }}" == "NOTUSED" ]]; then
