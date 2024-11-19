@@ -74,6 +74,7 @@ function upload_log {
 
 ## Skip to a Random CI Job. Assume max 32 CI Jobs.
 let "skip = $RANDOM % 32"
+echo Skipping $skip CI Jobs...
 
 ## Repeat forever for All CI Jobs
 for (( ; ; )); do
@@ -86,7 +87,6 @@ for (( ; ; )); do
     ## Skip to a Random CI Job
     if [[ $skip -gt 0 ]]; then
       let skip--
-      echo skip=$skip
       continue
     fi
 
