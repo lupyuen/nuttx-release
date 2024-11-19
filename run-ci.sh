@@ -72,6 +72,9 @@ function upload_log {
     --filename "ci-$job.log"
 }
 
+## Skip to a Random CI Job. Assume max 32 CI Jobs.
+let "skip = $RANDOM % 32"
+
 ## Repeat forever for All CI Jobs
 for (( ; ; )); do
   for job in \
@@ -80,6 +83,13 @@ for (( ; ; )); do
     arm-09 arm-10 arm-11 arm-12 sim-03 \
     arm-13 arm-14 x86_64-01
   do
+    ## Skip to a Random CI Job
+    if [[ $skip -gt 0 ]]; then
+      let skip--
+      echo skip=$skip
+      continue
+    fi
+
     ## Run the CI Job and find errors / warnings
     run_job $job
     clean_log
