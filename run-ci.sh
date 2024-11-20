@@ -79,10 +79,17 @@ echo Skipping $skip CI Jobs...
 ## Repeat forever for All CI Jobs
 for (( ; ; )); do
   for job in \
-    arm-01 arm-02 arm-03 arm-04 sim-01 \
-    arm-05 arm-06 arm-07 arm-08 sim-02 \
-    arm-09 arm-10 arm-11 arm-12 sim-03 \
-    arm-13 arm-14 x86_64-01
+    arm-01 arm-02 arm-03 arm-04 \
+    arm-05 arm-06 arm-07 arm-08 \
+    arm-09 arm-10 arm-11 arm-12 \
+    arm-13 arm-14 \
+    arm64-01 \
+    other \
+    risc-v-01 risc-v-02 risc-v-03 risc-v-04 \
+    risc-v-05 risc-v-06 \
+    sim-01 sim-02 sim-03 \
+    x86_64-01 \
+    xtensa-01 xtensa-02
   do
     ## Skip to a Random CI Job
     if [[ $skip -gt 0 ]]; then
