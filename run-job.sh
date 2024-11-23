@@ -10,6 +10,7 @@ set -x  ## Echo commands
 job=$1
 
 ## Show the System Info
+set | grep TMUX
 neofetch
 sleep 10
 
