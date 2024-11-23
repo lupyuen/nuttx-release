@@ -8,6 +8,10 @@ set -x  ## Echo commands
 
 # Parameter is CI Job, like "arm-01"
 job=$1
+if [[ "$job" == "" ]]; then
+  echo "ERROR: Job Parameter is missing (e.g. arm-01)"
+  exit 1
+fi
 
 ## Show the System Info
 set | grep TMUX
