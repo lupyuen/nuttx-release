@@ -28,6 +28,7 @@ sleep 10
 sudo docker run -it \
   ghcr.io/apache/nuttx/apache-nuttx-ci-linux:latest \
   /bin/bash -c "
+  set -x ;
   uname -a ;
   cd ;
   pwd ;
