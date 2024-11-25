@@ -58,6 +58,14 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## Remove "cache: false"
+search="cache: false"
+replace=""
+cat $file \
+  | sed "s/$search/$replace/g" \
+  >$tmp_file
+mv $tmp_file $file
+
 ## Enable the macOS Builds
 ## Change: if [[ "${{ inputs.os }}" == "macOS" ]]; then
 ## To:     if [[ "${{ inputs.os }}" == "NOTUSED" ]]; then
