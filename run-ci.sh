@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 ## Run NuttX CI with Docker
 ## Read the article: https://lupyuen.codeberg.page/articles/ci2.html
+## sudo sh -c '. ../github-token.sh && ./run-ci.sh 1'
+## Change '1' to a Unique Instance ID. Each instance of this script will run under a different Instance ID.
 
 echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-ci.sh
 set -x  ## Echo commands
-device=ci
+
+# Optional Parameter is Instance ID, like 1.
+# Each instance of this script will run under a different Instance ID.
+instance=$1
+device=ci$instance
 
 ## Get the Script Directory
 script_path="${BASH_SOURCE}"
@@ -30,7 +36,7 @@ function run_job {
 
 ## Strip the control chars
 function clean_log {
-  local tmp_file=/tmp/release-tmp.log
+  local tmp_file=/tmp/release-$device-tmp.log
   cat $log_file \
     | tr -d '\r' \
     | tr -d '\r' \
@@ -48,8 +54,8 @@ function clean_log {
 
 ## Search for Errors and Warnings
 function find_messages {
-  local tmp_file=/tmp/release-tmp.log
-  local msg_file=/tmp/release-msg.log
+  local tmp_file=/tmp/release-$device-tmp.log
+  local msg_file=/tmp/release-$device-msg.log
   local pattern='^(.*):(\d+):(\d+):\s+(warning|fatal error|error):\s+(.*)$'
   grep '^\*\*\*\*\*' $log_file \
     > $msg_file
