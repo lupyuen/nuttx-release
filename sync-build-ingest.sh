@@ -24,17 +24,17 @@ git clone ssh://git@github.com/NuttX/nuttx downstream
 ## Repeat forever
 for (( ; ; )); do
 
-  set +x ; echo "Checking Downstream Commit: Enable macOS Builds..." ; set -x
+  set +x ; echo "**** Checking Downstream Commit: Enable macOS Builds..." ; set -x
   pushd downstream
   git pull
   downstream_msg=$(git log -1 --format="%s")
   if [[ "$downstream_msg" != "Enable macOS Builds"* ]]; then
-    echo "Expected Downstream Commit to be 'Enable macOS Builds' but found: $downstream_msg"
+    set +x ; echo "**** ERROR: Expected Downstream Commit to be 'Enable macOS Builds' but found: $downstream_msg" ; set -x
     exit 1
   fi
   popd
 
-  set +x ; echo "Watching for Updates to NuttX Repo..." ; set -x
+  set +x ; echo "**** Watching for Updates to NuttX Repo..." ; set -x
   ## Get the Latest Upstream Commit.
   pushd upstream
   git pull
@@ -50,12 +50,12 @@ for (( ; ; )); do
 
   ## If No Updates: Try again
   if [[ "$upstream_date" == "$downstream_date" ]]; then
-    echo "Waiting for upstream updates..."
+    set +x ; echo "**** Waiting for upstream updates..." ; set -x
     date ; sleep 900
     continue
   fi
 
-  set +x ; echo "Discarding 'Enable macOS' commit from NuttX Mirror..." ; set -x
+  set +x ; echo "**** Discarding 'Enable macOS' commit from NuttX Mirror..." ; set -x
   pushd downstream
   git --no-pager log --decorate=short --pretty=oneline -1
   git reset --hard HEAD~1
@@ -64,7 +64,7 @@ for (( ; ; )); do
   popd
   sleep 10
 
-  set +x ; echo "Syncing NuttX Mirror with NuttX Repo..." ; set -x
+  set +x ; echo "**** Syncing NuttX Mirror with NuttX Repo..." ; set -x
   gh repo sync NuttX/nuttx --force
   pushd downstream
   git pull
@@ -73,12 +73,12 @@ for (( ; ; )); do
   popd
   sleep 10
 
-  set +x ; echo "Building NuttX Mirror..." ; set -x
+  set +x ; echo "**** Building NuttX Mirror..." ; set -x
   $script_dir/enable-macos-windows.sh
   
-  set +x ; echo "Waiting for Build to Complete and Ingesting GitHub Actions Logs..." ; set -x
+  set +x ; echo "**** Waiting for Build to Complete and Ingesting GitHub Actions Logs..." ; set -x
   $script_dir/../ingest-nuttx-builds/github.sh
   popd
-  echo "Done!"
+  set +x ; echo "**** Done!" ; set -x
   date ; sleep 900
 done
