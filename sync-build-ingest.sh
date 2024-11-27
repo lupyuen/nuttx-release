@@ -39,13 +39,13 @@ for (( ; ; )); do
   pushd upstream
   git pull
   upstream_date=$(git log -1 --format="%cI")
-  git log -1
+  git --no-pager log --decorate=short --pretty=oneline -1
   popd
 
   ## Get the Latest Downstream Commit (skip the "Enable macOS Builds")
   pushd downstream
   downstream_date=$(git log -1 --format="%cI" HEAD~1)
-  git log -1
+  git --no-pager log --decorate=short --pretty=oneline -1
   popd
 
   ## If No Updates: Try again
@@ -57,7 +57,7 @@ for (( ; ; )); do
 
   echo "Discarding 'Enable macOS' commit from NuttX Mirror..."
   pushd downstream
-  git log -1
+  git --no-pager log --decorate=short --pretty=oneline -1
   git reset --hard HEAD~1
   git status
   git push -f
@@ -69,7 +69,7 @@ for (( ; ; )); do
   pushd downstream
   git pull
   git status
-  git log -1
+  git --no-pager log --decorate=short --pretty=oneline -1
   popd
   sleep 60
 
