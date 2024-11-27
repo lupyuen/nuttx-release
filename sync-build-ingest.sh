@@ -45,7 +45,7 @@ for (( ; ; )); do
   ## Get the Latest Downstream Commit (skip the "Enable macOS Builds")
   pushd downstream
   downstream_date=$(git log -1 --format="%cI" HEAD~1)
-  git --no-pager log -1
+  git --no-pager log -1 HEAD~1
   popd
 
   ## If No Updates: Try again
