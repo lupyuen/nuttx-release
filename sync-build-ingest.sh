@@ -77,7 +77,8 @@ for (( ; ; )); do
   $script_dir/enable-macos-windows.sh
   
   set +x ; echo "**** Waiting for Build to Complete and Ingesting GitHub Actions Logs..." ; set -x
-  $script_dir/../ingest-nuttx-builds/github.sh
+  pushd $script_dir/../ingest-nuttx-builds
+  ./github.sh
   popd
   set +x ; echo "**** Done!" ; set -x
   date ; sleep 900
