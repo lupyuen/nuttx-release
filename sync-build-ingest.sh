@@ -62,7 +62,7 @@ for (( ; ; )); do
   git status
   git push -f
   popd
-  sleep 60
+  sleep 10
 
   echo "Syncing NuttX Mirror with NuttX Repo..."
   gh repo sync NuttX/nuttx --force
@@ -71,7 +71,7 @@ for (( ; ; )); do
   git status
   git --no-pager log --decorate=short --pretty=oneline -1
   popd
-  sleep 60
+  sleep 10
 
   echo "Building NuttX Mirror and Ingesting GitHub Actions Logs..."
   $script_dir/../ingest-nuttx-builds/build-github-and-ingest.sh 
