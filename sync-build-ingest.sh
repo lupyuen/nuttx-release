@@ -5,7 +5,7 @@
 ## (3) Sync NuttX Mirror with NuttX Repo
 ## (4) Build NuttX Mirror and Ingest GitHub Actions Logs
 ## (5) Repeat forever
-## https://lupyuen.codeberg.page/articles/ci3.html
+## https://lupyuen.github.io/articles/ci4
 
 set -e  #  Exit when any command fails
 set -x  #  Echo commands
@@ -24,7 +24,7 @@ git clone ssh://git@github.com/NuttX/nuttx downstream
 ## Repeat forever
 for (( ; ; )); do
 
-  echo "Checking Downstream Commit: Enable macOS Builds..."
+  set +x ; echo "Checking Downstream Commit: Enable macOS Builds..." ; set -x
   pushd downstream
   git pull
   downstream_msg=$(git log -1 --format="%s")
@@ -34,7 +34,7 @@ for (( ; ; )); do
   fi
   popd
 
-  echo "Watching for Updates to NuttX Repo..."
+  set +x ; echo "Watching for Updates to NuttX Repo..." ; set -x
   ## Get the Latest Upstream Commit.
   pushd upstream
   git pull
@@ -55,7 +55,7 @@ for (( ; ; )); do
     continue
   fi
 
-  echo "Discarding 'Enable macOS' commit from NuttX Mirror..."
+  set +x ; echo "Discarding 'Enable macOS' commit from NuttX Mirror..." ; set -x
   pushd downstream
   git --no-pager log --decorate=short --pretty=oneline -1
   git reset --hard HEAD~1
@@ -64,7 +64,7 @@ for (( ; ; )); do
   popd
   sleep 10
 
-  echo "Syncing NuttX Mirror with NuttX Repo..."
+  set +x ; echo "Syncing NuttX Mirror with NuttX Repo..." ; set -x
   gh repo sync NuttX/nuttx --force
   pushd downstream
   git pull
@@ -73,8 +73,12 @@ for (( ; ; )); do
   popd
   sleep 10
 
-  echo "Building NuttX Mirror and Ingesting GitHub Actions Logs..."
-  $script_dir/../ingest-nuttx-builds/build-github-and-ingest.sh 
+  set +x ; echo "Building NuttX Mirror..." ; set -x
+  $script_dir/enable-macos-windows.sh
+  
+  set +x ; echo "Waiting for Build to Complete and Ingesting GitHub Actions Logs..." ; set -x
+  $script_dir/../ingest-nuttx-builds/github.sh
+  popd
   echo "Done!"
   date ; sleep 900
 done
