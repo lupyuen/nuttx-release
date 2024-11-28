@@ -74,12 +74,13 @@ for (( ; ; )); do
   sleep 10
 
   set +x ; echo "**** Building NuttX Mirror..." ; set -x
-  $script_dir/enable-macos-windows.sh
-  
+  $script_dir/enable-macos-windows.sh  ## https://github.com/lupyuen/nuttx-release/blob/main/enable-macos-windows.sh
+
   set +x ; echo "**** Waiting for Build to Complete and Ingesting GitHub Actions Logs..." ; set -x
   pushd $script_dir/../ingest-nuttx-builds
-  ./github.sh
+  ./github.sh  ## https://github.com/lupyuen/ingest-nuttx-builds/blob/main/github.sh
   popd
+
   set +x ; echo "**** Done!" ; set -x
   date ; sleep 900
 done
