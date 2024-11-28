@@ -24,6 +24,11 @@ git clone ssh://git@github.com/NuttX/nuttx downstream
 ## Repeat forever
 for (( ; ; )); do
 
+  set +x ; echo "**** Waiting for Build to Complete then Ingest GitHub Actions Logs..." ; set -x
+  pushd $script_dir/../ingest-nuttx-builds
+  ./github.sh  ## https://github.com/lupyuen/ingest-nuttx-builds/blob/main/github.sh
+  popd
+
   set +x ; echo "**** Checking Downstream Commit: Enable macOS Builds..." ; set -x
   pushd downstream
   git pull
@@ -76,11 +81,6 @@ for (( ; ; )); do
   set +x ; echo "**** Building NuttX Mirror..." ; set -x
   $script_dir/enable-macos-windows.sh  ## https://github.com/lupyuen/nuttx-release/blob/main/enable-macos-windows.sh
 
-  set +x ; echo "**** Waiting for Build to Complete and Ingesting GitHub Actions Logs..." ; set -x
-  pushd $script_dir/../ingest-nuttx-builds
-  ./github.sh  ## https://github.com/lupyuen/ingest-nuttx-builds/blob/main/github.sh
-  popd
-
-  set +x ; echo "**** Done!" ; set -x
+  set +x ; echo "**** Waiting for build to start..." ; set -x
   date ; sleep 900
 done
