@@ -3,16 +3,14 @@
 Apache NuttX Release Testing for Milk-V Duo S, Ox64 BL808, Star64 JH7110, PinePhone:
 
 ```bash
-## TODO: Update `release.sh` and enter the release / candidate / hash:
-## export release=12.5.1
-## export candidate=RC0
-## export hash=9e8753d625
+## TODO: Make sure ../github-token.sh contains a GitHub Token with Gist Permission
+## export GITHUB_TOKEN=...
 
 ## Run the Release Test Script for Milk-V Duo S, Ox64 BL808, Star64 JH7110, PinePhone:
-./release.sh milkvduos
-./release.sh ox64
-./release.sh star64
-./release.sh pinephone
+. ../github-token.sh && ./release.sh milkvduos
+. ../github-token.sh && ./release.sh ox64
+. ../github-token.sh && ./release.sh star64
+. ../github-token.sh && ./release.sh pinephone
 ```
 
 To prepare Ubuntu for NuttX Release Testing:
