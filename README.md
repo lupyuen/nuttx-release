@@ -38,9 +38,12 @@ export PATH=$PWD/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH
 riscv-none-elf-gcc -v
 ## Should show: `gcc version 13.2.0 (xPack GNU RISC-V Embedded GCC x86_64)`
 
-wget https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v12.3.0-1/xpack-riscv-none-elf-gcc-12.3.0-1-linux-arm64.tar.gz
-$ tar xf xpack-riscv-none-elf-gcc-12.3.0-1-linux-arm64.tar.gz
-$ export PATH=$PWD/xpack-riscv-none-elf-gcc-12.3.0-1/bin:$PATH
+## Install GCC Toolchain for Arm64 (Linux x64)
+wget https://developer.arm.com/-/media/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-elf.tar.xz
+tar xf arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-elf.tar.xz
+export PATH=$PWD/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-elf/bin:$PATH
+aarch64-none-elf-gcc -v
+## Should show: `gcc version 13.2.1 20231009 (Arm GNU Toolchain 13.2.rel1 (Build arm-13.7))`
 
 ## Optional: For TinyEMU
 sudo apt install -y emscripten
