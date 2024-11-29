@@ -26,7 +26,7 @@ function build_nuttx {
   pushd ../nuttx
 
   ## Build NuttX
-  make -j 8
+  make -j
 
   ## Return to previous folder
   popd

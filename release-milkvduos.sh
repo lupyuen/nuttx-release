@@ -26,7 +26,7 @@ function build_nuttx {
   pushd ../nuttx
 
   ## Build NuttX
-  make -j 8
+  make -j
 
   ## Return to previous folder
   popd
@@ -39,10 +39,10 @@ function build_apps {
   pushd ../nuttx
 
   ## Build Apps Filesystem
-  make -j 8 export
+  make -j export
   pushd ../apps
   ./tools/mkimport.sh -z -x ../nuttx/nuttx-export-*.tar.gz
-  make -j 8 import
+  make -j import
   popd
 
   ## Return to previous folder
