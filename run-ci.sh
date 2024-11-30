@@ -4,7 +4,7 @@
 ## sudo sh -c '. ../github-token.sh && ./run-ci.sh 1'
 ## Change '1' to a Unique Instance ID. Each instance of this script will run under a different Instance ID.
 
-echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-ci.sh
+echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-ci.sh $1
 set -x  ## Echo commands
 
 # Optional Parameter is Instance ID, like 1.
@@ -30,7 +30,7 @@ function run_job {
   pushd /tmp
   script $log_file \
     $script_option \
-    "$script_dir/run-job.sh $job"
+    "$script_dir/run-job.sh $job $instance"
   popd
 }
 

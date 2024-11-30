@@ -2,16 +2,19 @@
 ## Run a NuttX CI Job with Docker
 ## Read the article: https://lupyuen.codeberg.page/articles/ci2.html
 
-echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-job.sh
+echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-job.sh $1 $2
 echo Called by https://github.com/lupyuen/nuttx-release/blob/main/run-ci.sh
 set -x  ## Echo commands
 
-# Parameter is CI Job, like "arm-01"
+# First Parameter is CI Job, like "arm-01"
 job=$1
 if [[ "$job" == "" ]]; then
   echo "ERROR: Job Parameter is missing (e.g. arm-01)"
   exit 1
 fi
+
+# Second Parameter is Instance ID, like "1"
+instance=$2
 
 ## Show the System Info
 set | grep TMUX || true

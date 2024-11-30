@@ -7,6 +7,13 @@
 ## (5) Repeat forever
 ## https://lupyuen.github.io/articles/ci4
 
+## If the GitHub Build crosses 00:00 UTC: Ingest GitHub Actions Logs will wait forever. Here's the fix:
+## Get the Run ID from the Latest Build: https://github.com/NuttX/nuttx/actions/workflows/build.yml
+## Run github.sh with the Run ID like this:
+## pushd ../ingest-nuttx-builds
+## ./github.sh 12091049193  ## https://github.com/lupyuen/ingest-nuttx-builds/blob/main/github.sh
+## popd
+
 set -e  #  Exit when any command fails
 set -x  #  Echo commands
 
