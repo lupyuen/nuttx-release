@@ -1,8 +1,22 @@
 #!/usr/bin/env bash
-## Run NuttX CI with Docker
-## Read the article: https://lupyuen.codeberg.page/articles/ci2.html
-## sudo sh -c '. ../github-token.sh && ./run-ci.sh 1'
+## Run NuttX CI with Docker:
+##   sudo apt install gh glab
+##   sudo sh -c '. ../github-token.sh && ./run-ci.sh 1'
+##   sudo sh -c '. ../gitlab-token.sh && ./run-ci.sh 1'
 ## Change '1' to a Unique Instance ID. Each instance of this script will run under a different Instance ID.
+
+## GitHub Token: Should have Gist Permission
+## github-token.sh contains:
+##   export GITHUB_TOKEN=...
+
+## GitLab Token: User Settings > Access tokens > Select Scopes
+##   api: Grants complete read/write access to the API, including all groups and projects, the container registry, the dependency proxy, and the package registry.
+## gitlab-token.sh contains:
+##   export GITLAB_TOKEN=...
+##   export GITLAB_USER=lupyuen
+##   export GITLAB_REPO=nuttx-build-log
+
+## Read the article: https://lupyuen.codeberg.page/articles/ci2.html
 
 echo Now running https://github.com/lupyuen/nuttx-release/blob/main/run-ci.sh $1
 set -x  ## Echo commands
@@ -66,16 +80,35 @@ function find_messages {
   mv $tmp_file $log_file
 }
 
-## Upload to GitHub Gist
+## Upload to GitLab Snippet or GitHub Gist
 function upload_log {
   local job=$1
   local nuttx_hash=$2
   local apps_hash=$3
-  cat $log_file | \
-    gh gist create \
-    --public \
-    --desc "[$job] CI Log for nuttx @ $nuttx_hash / nuttx-apps @ $apps_hash" \
-    --filename "ci-$job.log"
+  local desc="[$job] CI Log for nuttx @ $nuttx_hash / nuttx-apps @ $apps_hash"
+  local filename="ci-$job.log"
+  if [[ "$GITLAB_TOKEN" != "" ]]; then
+    if [[ "$GITLAB_USER" == "" ]]; then
+      echo '$GITLAB_USER is missing (e.g. lupyuen)'
+      exit 1
+    fi
+    if [[ "$GITLAB_REPO" == "" ]]; then
+      echo '$GITLAB_REPO is missing (e.g. nuttx-build-log)'
+      exit 1
+    fi
+    cat $log_file | \
+      glab snippet new \
+        --repo "$GITLAB_USER/$GITLAB_REPO" \
+        --visibility public \
+        --title "$desc" \
+        --filename "$filename"
+  else
+    cat $log_file | \
+      gh gist create \
+        --public \
+        --desc "$desc" \
+        --filename "$filename"
+  fi
 }
 
 ## Skip to a Random CI Job. Assume max 32 CI Jobs.
