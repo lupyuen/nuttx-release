@@ -117,6 +117,8 @@ let "skip = $RANDOM % 32"
 echo Skipping $skip CI Jobs...
 
 ## Repeat forever for All CI Jobs
+## risc-v-07: Python Build runs only on NuttX Build Farm, not GitHub CI, because it's costly to compile
+## https://github.com/apache/nuttx/pull/15099#issuecomment-2537525041
 for (( ; ; )); do
   for job in \
     arm-01 arm-02 arm-03 arm-04 \
@@ -126,7 +128,7 @@ for (( ; ; )); do
     arm64-01 \
     other \
     risc-v-01 risc-v-02 risc-v-03 risc-v-04 \
-    risc-v-05 risc-v-06 \
+    risc-v-05 risc-v-06 risc-v-07 \
     sim-01 sim-02 sim-03 \
     x86_64-01 \
     xtensa-01 xtensa-02
