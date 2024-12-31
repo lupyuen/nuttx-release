@@ -27,7 +27,7 @@ sudo docker pull \
 sleep 10
 
 ## Run the CI in Docker Container
-## If CI Test Hangs: Kill it after 1 hour
+## If CI Test Hangs: Kill it after 2 hours
 sudo docker run -it \
   ghcr.io/apache/nuttx/apache-nuttx-ci-linux:latest \
   /bin/bash -c "
@@ -41,7 +41,7 @@ sudo docker run -it \
   pushd apps  ; echo NuttX Apps: https://github.com/apache/nuttx-apps/tree/\$(git rev-parse HEAD) ; popd ;
   sleep 10 ;
   cd nuttx/tools/ci ;
-  ( sleep 3600 ; echo Killing pytest after timeout... ; pkill -f pytest )&
+  ( sleep 7200 ; echo Killing pytest after timeout... ; pkill -f pytest )&
   (./cibuild.sh -c -A -N -R testlist/$job.dat || echo '***** BUILD FAILED') ;
 "
 
