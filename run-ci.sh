@@ -158,7 +158,11 @@ for (( ; ; )); do
 
     ## Upload the log
     upload_log $job $nuttx_hash $apps_hash
+
+    ## Sleep a while. Quit on I/O Error.
+    set -e  ## Exit when any command fails
     sleep 10
+    set +e  ## Ignore errors
   done
 
   ## Free up the Docker disk space
