@@ -37,7 +37,18 @@ neofetch
 echo ----- download staged artifacts. Check their signature and hashes.
 mkdir checkrelease
 cd checkrelease
-wget -r -nH --cut-dirs=100 --no-parent https://dist.apache.org/repos/dist/dev/nuttx/$release-$candidate/
+url=https://dist.apache.org/repos/dist/dev/nuttx/$release-$candidate/
+for file in \
+  apache-nuttx-$release.tar.gz.asc \
+  apache-nuttx-$release.tar.gz.sha512 \
+  apache-nuttx-$release.tar.gz \
+  apache-nuttx-apps-$release.tar.gz.asc \
+  apache-nuttx-apps-$release.tar.gz.sha512 \
+  apache-nuttx-apps-$release.tar.gz
+do
+  wget $url/$file
+done
+## Previously: wget -r -nH --cut-dirs=100 --no-parent https://dist.apache.org/repos/dist/dev/nuttx/$release-$candidate/
 
 ## To import the keys: wget https://dist.apache.org/repos/dist/dev/nuttx/KEYS && gpg --import KEYS
 ## To trust the keys: gpg --edit-key 9208D2E4B800D66F749AD4E94137A71698C5E4DB
