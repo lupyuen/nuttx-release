@@ -25,6 +25,9 @@ else
   script_option=
 fi
 
+## Login to GitHub Gists
+gh auth status
+
 ## Close the `screen` session
 $script_dir/close.exp
 

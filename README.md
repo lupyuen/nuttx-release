@@ -28,7 +28,10 @@ sudo apt install -y \
   libgmp-dev libmpc-dev libmpfr-dev libisl-dev binutils-dev libelf-dev \
   libexpat-dev gcc-multilib g++-multilib picocom u-boot-tools util-linux
 sudo apt install -y kconfig-frontends
-sudo apt install -y expect gh
+sudo apt install -y expect gh glab
+
+## Login to GitHub Gists
+gh auth login
 
 ## Install xPack GCC Toolchain for RISC-V (Linux x64)
 wget https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v13.2.0-2/xpack-riscv-none-elf-gcc-13.2.0-2-linux-x64.tar.gz
