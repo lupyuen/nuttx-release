@@ -16,8 +16,9 @@ Apache NuttX Release Testing for Milk-V Duo S, Ox64 BL808, Star64 JH7110, PinePh
 To prepare Ubuntu for NuttX Release Testing:
 
 ```bash
-## Grant access to /dev/tty*
+## Grant access to /dev/tty*. Login again to take effect.
 sudo usermod -a -G dialout $USER
+logout
 
 ## Install NuttX prerequisities
 sudo apt install -y git neofetch screen curl
