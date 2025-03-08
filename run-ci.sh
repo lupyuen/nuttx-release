@@ -131,7 +131,7 @@ for (( ; ; )); do
     risc-v-05 risc-v-06 risc-v-07 \
     sim-01 sim-02 sim-03 \
     x86_64-01 \
-    xtensa-01 xtensa-02
+    xtensa-01 xtensa-02 xtensa-03
   do
     ## Skip to a Random CI Job
     if [[ $skip -gt 0 ]]; then
