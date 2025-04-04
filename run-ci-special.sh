@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 ## Run NuttX CI with Docker:
 ##   sudo apt install gh glab
-##   sudo sh -c 'cd $HOME/nuttx-release && . ../github-token.sh && ./run-ci-special.sh 0'
-##   sudo sh -c 'cd $HOME/nuttx-release && . ../gitlab-token.sh && ./run-ci-special.sh 0'
+##   cd $HOME/nuttx-release && sudo sh -c '. ../github-token.sh && ./run-ci-special.sh 0'
+##   cd $HOME/nuttx-release && sudo sh -c '. ../gitlab-token.sh && ./run-ci-special.sh 0'
 ## Change '1' to a Unique Instance ID. Each instance of this script will run under a different Instance ID.
 
 ## GitHub Token: Should have Gist Permission
