@@ -192,6 +192,9 @@ read
 
 echo '===== Ox64 NSH Info and Free'
 screen "$usbserial" 2000000
-## open -a CoolTerm
+screen "$usbserial" 2000000
+screen "$usbserial" 2000000
+screen "$usbserial" 2000000
+screen "$usbserial" 2000000
 
 echo ----- TODO: Verify hash from uname
