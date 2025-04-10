@@ -112,8 +112,9 @@ function upload_log {
   fi
 }
 
-## Don't skip to a Random CI Job
-skip=0
+## Skip to a Random CI Job. Assume max 32 CI Jobs.
+let "skip = $RANDOM % 32"
+echo Skipping $skip CI Jobs...
 
 ## Repeat forever for All CI Jobs
 ## risc-v-07: Python Build runs only on NuttX Build Farm, not GitHub CI, because it's costly to compile
