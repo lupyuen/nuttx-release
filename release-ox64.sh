@@ -197,5 +197,8 @@ screen "$usbserial" 2000000
 screen "$usbserial" 2000000
 screen "$usbserial" 2000000
 screen "$usbserial" 2000000
+screen "$usbserial" 2000000
+screen "$usbserial" 2000000
+screen "$usbserial" 2000000
 
 echo ----- TODO: Verify hash from uname
