@@ -12,12 +12,13 @@ echo https://github.com/lupyuen/nuttx-release/blob/main/release-star64.sh
 ## TODO: Update PATH for xPack riscv-none-elf-gcc
 ## export PATH="$HOME/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH"
 
-echo ----- Remove checkrelease folder
-cd /tmp
-rm -r checkrelease
-
 set -e  ## Exit when any command fails
 set -x  ## Echo commands
+
+export device=star64
+echo ----- Remove checkrelease folder
+cd /tmp
+rm -rf checkrelease-$device
 
 ## Build NuttX
 function build_nuttx {
@@ -52,8 +53,8 @@ function build_apps {
 neofetch
 
 echo ----- download staged artifacts. Check their signature and hashes.
-mkdir checkrelease
-cd checkrelease
+mkdir checkrelease-$device
+cd checkrelease-$device
 url=https://dist.apache.org/repos/dist/dev/nuttx/$release-$candidate/
 for file in \
   apache-nuttx-$release.tar.gz.asc \

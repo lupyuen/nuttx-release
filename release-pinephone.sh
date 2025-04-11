@@ -12,12 +12,13 @@ echo https://github.com/lupyuen/nuttx-release/blob/main/release-pinephone.sh
 ## TODO: Update PATH for Arm GNU Toolchain aarch64-none-elf
 ## export PATH="$HOME/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-elf/bin:$PATH"
 
-echo ----- Remove checkrelease folder
-cd /tmp
-rm -r checkrelease
-
 set -e  ## Exit when any command fails
 set -x  ## Echo commands
+
+export device=pinephone
+echo ----- Remove checkrelease folder
+cd /tmp
+rm -rf checkrelease-$device
 
 ## Build NuttX
 function build_nuttx {
@@ -35,8 +36,8 @@ function build_nuttx {
 neofetch
 
 echo ----- download staged artifacts. Check their signature and hashes.
-mkdir checkrelease
-cd checkrelease
+mkdir checkrelease-$device
+cd checkrelease-$device
 url=https://dist.apache.org/repos/dist/dev/nuttx/$release-$candidate/
 for file in \
   apache-nuttx-$release.tar.gz.asc \
