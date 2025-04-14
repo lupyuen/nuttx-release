@@ -35,8 +35,8 @@ sudo docker run -it \
   uname -a ;
   cd ;
   pwd ;
-  git clone https://github.com/anchao/nuttx nuttx --branch 25020501 ;
-  git clone https://github.com/anchao/nuttx-apps apps --branch 25020501 ;
+  git clone https://github.com/Donny9/incubator-nuttx nuttx --branch sem ;
+  git clone https://github.com/Donny9/incubator-nuttx-apps apps --branch system_dd ;
   pushd nuttx ; git reset --hard HEAD ; echo NuttX Source: https://github.com/apache/nuttx/tree/\$(git rev-parse HEAD) ; popd ;
   pushd apps  ; git reset --hard HEAD ; echo NuttX Apps: https://github.com/apache/nuttx-apps/tree/\$(git rev-parse HEAD) ; popd ;
   sleep 10 ;
