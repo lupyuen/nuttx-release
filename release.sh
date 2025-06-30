@@ -2,9 +2,9 @@
 ## Validate NuttX Release: ~/nuttx-release/release.sh milkvduos / ox64 / star64 / pinephone
 
 ## TODO: Update for the release
-export release=12.9.0
-export candidate=RC1
-export hash=7c95e3c613
+export release=12.10.0
+export candidate=RC0
+export hash=6fc5b3e9dc
 
 set -e  ## Exit when any command fails
 set -x  ## Echo commands
