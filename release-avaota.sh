@@ -153,6 +153,7 @@ ssh $AVAOTA_SERVER ls -l /tmp/Image
 ssh $AVAOTA_SERVER sudo /home/user/copy-image.sh
 
 ## Run the NuttX Test
+echo '===== Avaota-A1 NSH Info and Free'
 cd $script_dir
 expect ./avaota.exp
 
