@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ## Validate NuttX Release for Avaota-A1
 ## Based on https://cwiki.apache.org/confluence/display/NUTTX/Validating+a+staged+Release
-## Sample Output: 
+## Sample Output: https://gist.github.com/lupyuen/7c9b0da52a2d445c7c559e001ea73126
 ## clear && ~/nuttx-release/release.sh avaota
 echo ----- Validate NuttX Release for Avaota-A1
 echo release=$release
