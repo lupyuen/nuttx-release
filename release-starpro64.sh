@@ -107,7 +107,7 @@ echo '===== StarPro64 Compiler'
 riscv-none-elf-gcc -v
 
 echo '===== StarPro64 Configuration'
-./tools/configure.sh StarPro64:nsh
+./tools/configure.sh starpro64:nsh
 
 echo ----- Build NuttX
 build_nuttx
