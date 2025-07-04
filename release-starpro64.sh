@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 ## Validate NuttX Release for StarPro64
 ## Based on https://cwiki.apache.org/confluence/display/NUTTX/Validating+a+staged+Release
-## Sample Output: 
+## Sample Output: https://gist.github.com/lupyuen/8f40ebacb22da08039be3b854d7837de
 ## clear && ~/nuttx-release/release.sh starpro64
 echo ----- Validate NuttX Release for StarPro64
 echo release=$release
 echo candidate=$candidate
 echo hash=$hash
 echo https://github.com/lupyuen/nuttx-release/blob/main/release-starpro64.sh
-
-## TODO: Update PATH for Arm GNU Toolchain riscv-none-elf
-## export PATH="$HOME/arm-gnu-toolchain-13.2.Rel1-x86_64-riscv-none-elf/bin:$PATH"
 
 set -e  ## Exit when any command fails
 set -x  ## Echo commands
