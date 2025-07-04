@@ -11,7 +11,7 @@ set -x  ## Echo commands
 
 device=$1
 echo ----- Validate NuttX Release for $device
-echo https://github.com/lupyuen/nuttx-release/blob/main/release-$1.sh
+echo Now running https://github.com/lupyuen/nuttx-release/blob/main/release.sh $1
 
 ## Get the Script Directory
 script_path="${BASH_SOURCE}"

@@ -7,7 +7,7 @@ echo ----- Validate NuttX Release for Ox64
 echo release=$release
 echo candidate=$candidate
 echo hash=$hash
-echo https://github.com/lupyuen/nuttx-release/blob/main/release-ox64.sh
+echo Now running https://github.com/lupyuen/nuttx-release/blob/main/release-ox64.sh
 
 ## TODO: Update PATH for xPack riscv-none-elf-gcc
 ## export PATH="$HOME/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH"

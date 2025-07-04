@@ -7,7 +7,7 @@ echo ----- Validate NuttX Release for StarPro64
 echo release=$release
 echo candidate=$candidate
 echo hash=$hash
-echo https://github.com/lupyuen/nuttx-release/blob/main/release-starpro64.sh
+echo Now running https://github.com/lupyuen/nuttx-release/blob/main/release-starpro64.sh
 
 set -e  ## Exit when any command fails
 set -x  ## Echo commands
