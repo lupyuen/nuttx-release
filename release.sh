@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Validate NuttX Release: ~/nuttx-release/release.sh starpro64 / avaota / milkvduos / ox64 / star64 / pinephone
+## Validate NuttX Release: ~/nuttx-release/release.sh starpro64 / avaota / milkvduos / oz64 / ox64 / star64 / pinephone
 
 ## TODO: Update for the release
 export release=12.11.0
