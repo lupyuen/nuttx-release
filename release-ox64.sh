@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-## Validate NuttX Release for Ox64
+## Validate NuttX Release for Ox64 BL808
 ## Based on https://cwiki.apache.org/confluence/display/NUTTX/Validating+a+staged+Release
 ## Sample Output: https://gist.github.com/lupyuen/d211428dc43d85b8ec1fd803275e9f26
 ## clear && ~/nuttx-release/release.sh ox64
-echo ----- Validate NuttX Release for Ox64
+echo ----- Validate NuttX Release for Ox64 BL808
 echo release=$release
 echo candidate=$candidate
 echo hash=$hash
@@ -98,10 +98,10 @@ ls -l apps/README.md
 echo ----- Build Targets
 cd nuttx
 
-echo '===== Ox64 Compiler'
+echo '===== Ox64 BL808 Compiler'
 riscv-none-elf-gcc -v
 
-echo '===== Ox64 Configuration'
+echo '===== Ox64 BL808 Configuration'
 ./tools/configure.sh ox64:nsh
 
 echo ----- Build NuttX
@@ -113,7 +113,7 @@ build_apps
 echo ----- Generate Initial RAM Disk
 genromfs -f initrd -d ../apps/bin -V "NuttXBootVol"
 
-echo '===== Ox64 Size'
+echo '===== Ox64 BL808 Size'
 riscv-none-elf-size nuttx
 
 echo ----- Export the Binary Image to nuttx.bin
@@ -176,7 +176,7 @@ echo ----- Wait for USB Serial to be connected
 ## sudo usermod -a -G dialout $USER
 usbserial=/dev/ttyUSB0
 set +x  #  Don't echo commands
-echo "***** Connect Ox64 to USB Serial"
+echo "***** Connect Ox64 BL808 to USB Serial"
 while : ; do
   if [ -c "$usbserial" ]
   then
@@ -187,11 +187,11 @@ done
 set -x  #  Echo commands
 
 echo ----- Run the firmware
-echo Insert microSD into Ox64, power on Ox64, run "uname -a" and "free".
+echo Insert microSD into Ox64 BL808, power on Ox64, run "uname -a" and "free".
 echo Press Enter to begin...
 read
 
-echo '===== Ox64 NSH Info and Free'
+echo '===== Ox64 BL808 NSH Info and Free'
 screen "$usbserial" 2000000
 screen "$usbserial" 2000000
 screen "$usbserial" 2000000
