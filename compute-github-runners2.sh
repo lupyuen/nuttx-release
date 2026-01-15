@@ -11,7 +11,7 @@ duration_hours_to_runner_hours=7.4
 ## date=2024-10-21
 ## hours=24
 date=$(date -u +'%Y-%m-%d')
-hours=$(bc -e "1+$(date -u +'%H')")
+hours=$(echo "1+$(date -u +'%H')" | bc)
 
 ## Set the GitHub Token: export GITHUB_TOKEN=...
 ## Any Token with Read-Access to NuttX Repo will do:
@@ -49,15 +49,15 @@ function add_runner_hours {
 
     ## Extrapolate the Job Duration to Runner Hours
     total_job_hours=$(
-      bc -e "$total_job_hours+($run_duration_ms/1000/60/60)"
+      echo "$total_job_hours+($run_duration_ms/1000/60/60)" | bc
     )
     local runner_hours=$(
-      bc -e "$duration_hours_to_runner_hours*$run_duration_ms/1000/60/60"
+      echo "$duration_hours_to_runner_hours*$run_duration_ms/1000/60/60" | bc
     )
 
     if [[ "$runner_hours" != "0" ]]; then
       local runner_hours_rounded=$(
-        bc -e "$runner_hours"
+        echo "$runner_hours" | bc
       )
       echo $run_id,$run_duration_ms,$runner_hours_rounded
     fi
@@ -72,16 +72,16 @@ add_runner_hours apache/nuttx-apps
 
 ## Compute the Full-Time Runners
 total_runner_hours=$(
-  bc -l -e "$duration_hours_to_runner_hours*$total_job_hours"
+  echo "$duration_hours_to_runner_hours*$total_job_hours" | bc -l
 )
 fulltime_runners=$(
-  bc -e "$total_runner_hours/$hours"
+  echo "$total_runner_hours/$hours" | bc
 )
 total_job_hours_rounded=$(
-  bc -l -e "$total_job_hours"
+  echo "$total_job_hours" | bc -l
 )
 total_runner_hours_rounded=$(
-  bc -l -e "$total_runner_hours"
+  echo "$total_runner_hours" | bc -l
 )
 echo date=$date
 echo hours=$hours
