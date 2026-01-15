@@ -49,15 +49,15 @@ function add_runner_hours {
 
     ## Extrapolate the Job Duration to Runner Hours
     total_job_hours=$(
-      echo "$total_job_hours+($run_duration_ms/1000/60/60)" | bc
+      echo "$total_job_hours+($run_duration_ms/1000/60/60)" | bc -l
     )
     local runner_hours=$(
-      echo "$duration_hours_to_runner_hours*$run_duration_ms/1000/60/60" | bc
+      echo "$duration_hours_to_runner_hours*$run_duration_ms/1000/60/60" | bc -l
     )
 
     if [[ "$runner_hours" != "0" ]]; then
       local runner_hours_rounded=$(
-        echo "$runner_hours" | bc
+        printf "%0.1f\n" $(echo "$runner_hours" | bc)
       )
       echo $run_id,$run_duration_ms,$runner_hours_rounded
     fi
@@ -78,10 +78,10 @@ fulltime_runners=$(
   echo "$total_runner_hours/$hours" | bc
 )
 total_job_hours_rounded=$(
-  echo "$total_job_hours" | bc -l
+  printf "%0.1f\n" $(echo "$total_job_hours" | bc -l)
 )
 total_runner_hours_rounded=$(
-  echo "$total_runner_hours" | bc -l
+  printf "%0.0f\n" $(echo "$total_runner_hours" | bc -l)
 )
 echo date=$date
 echo hours=$hours
