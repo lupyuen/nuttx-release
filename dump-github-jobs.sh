@@ -12,11 +12,24 @@ run_id=22837803838 ## From databaseId
 ## "public_repo" (Access public repositories)
 . $HOME/github-token.sh
 
-    gh pr list \
-      --repo $repo \
-      --limit 1000 \
-      --search "created:$date" \
-      --json   id,url,updatedAt,title,additions,assignees,author,autoMergeRequest,baseRefName,changedFiles,closed,closedAt,createdAt,deletions,files,headRefName,headRefOid,headRepository,headRepositoryOwner,isDraft,labels,mergeCommit,mergeStateStatus,mergeable,mergedAt,mergedBy,milestone,number,state
+pr_list=$(
+  gh pr list \
+    --repo $repo \
+    --limit 1000 \
+    --search "created:$date" \
+    --json   id,url,updatedAt,title,additions,assignees,author,autoMergeRequest,baseRefName,changedFiles,closed,closedAt,createdAt,deletions,files,headRefName,headRefOid,headRepository,headRepositoryOwner,isDraft,labels,mergeCommit,mergeStateStatus,mergeable,mergedAt,mergedBy,milestone,number,state \
+    | jq
+)
+len=$( echo "$pr_list" | jq '. | length' )
+echo "Got $len PRs"
+for (( i=0; i<$len; i++ )) ; do
+  pr=$(echo "$pr_list" | jq ".[$i]")
+  pr_num=$(echo "$pr" | jq .number)
+  echo "$pr" | jq >/tmp/$pr_num.json
+  echo "PR $i: /tmp/$pr_num.json"
+done
+
+exit
 
 ## Result
 # [
@@ -195,8 +208,6 @@ run_id=22837803838 ## From databaseId
 #     "url": "https://github.com/apache/nuttx/pull/18501"
 #   }
 # ]
-
-exit
 
     gh run list \
       --repo $repo \
