@@ -78,6 +78,16 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## TODO: Remove this
+echo Patching tools/testbuild.sh for retry... ;
+pushd tools ;
+rm testbuild.sh ;
+wget https://raw.githubusercontent.com/lupyuen13/nuttx/refs/heads/retry-build/tools/testbuild.sh ;
+chmod +x testbuild.sh ;
+cat testbuild.sh ;
+popd ;
+echo Patched tools/testbuild.sh ;
+
 ## Commit the modified files
 git pull
 git status
