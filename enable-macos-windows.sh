@@ -78,6 +78,18 @@ cat $file \
   >$tmp_file
 mv $tmp_file $file
 
+## Point to Local Repo
+## Change: repository: apache/nuttx
+## To:     repository: NuttX/nuttx
+file=.github/workflows/build.yml
+tmp_file=$tmp_dir/build.yml
+search="repository: apache\\/nuttx$"
+replace="repository: NuttX\\/nuttx"
+cat $file \
+  | sed "s/$search/$replace/g" \
+  >$tmp_file
+mv $tmp_file $file
+
 ## TODO: Remove this
 echo Patching tools/testbuild.sh for retry... ;
 pushd tools ;
