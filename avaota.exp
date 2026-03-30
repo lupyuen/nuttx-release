@@ -29,7 +29,7 @@ sleep 5
 
 ## Connect to USB Serial Terminal
 expect "$"
-send -s "screen /dev/ttyUSB0 115200\r"
+send -s "screen /dev/ttyUSB1 115200\r"
 
 ## Power Off Avaota-A1
 puts "Power Off Avaota-A1..."
