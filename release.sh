@@ -2,9 +2,9 @@
 ## Validate NuttX Release: ~/nuttx-release/release.sh starpro64 / avaota / milkvduos / oz64 / ox64 / star64 / pinephone
 
 ## TODO: Update for the release
-export release=12.12.0
+export release=12.13.0
 export candidate=RC0
-export hash=54b5a8f2c3
+export hash=b9b5d9afbf
 
 set -e  ## Exit when any command fails
 set -x  ## Echo commands
