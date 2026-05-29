@@ -28,11 +28,13 @@ sleep 10
 
 ## Run the CI in Docker Container
 ## If CI Test Hangs: Kill it after 3 hours
+## `autoreconf` is needed for esp32p4-function-ev-board:python
 sudo docker run -it \
   ghcr.io/apache/nuttx/apache-nuttx-ci-linux:latest \
   /bin/bash -c "
   set -x ;
   uname -a ;
+  sudo apt install autoconf ;
   pip install ntfc ;
   mkdir /root/nuttx-ntfc ;
   mkdir /root/nuttx-ntfc/external ;
